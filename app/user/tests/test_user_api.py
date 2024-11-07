@@ -130,7 +130,7 @@ class PrivateUserApiTests(TestCase):
     def setUp(self):
         self.user = create_user(
             email='test@example.com',
-            password='testpass123',
+            password='test-pass123',
             name='Test Name'
         )
         self.client = APIClient()
@@ -147,14 +147,14 @@ class PrivateUserApiTests(TestCase):
         })
 
     def test_post_me_not_allowed(self):
-        """ Test POST is not allowed for the me endpoint """
+        """ Test POST is not allowed for the endpoint """
         res = self.client.post(ME_URL, {})
 
         self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_update_user_profile(self):
         """ Test updating the user profile for the authenticated user """
-        payload = {'name': 'Update Name', 'password': 'Newpassword123'}
+        payload = {'name': 'Update Name', 'password': 'New-password123'}
 
         res = self.client.patch(ME_URL, payload)
 
